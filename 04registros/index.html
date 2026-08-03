@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Personas - Sistema Web</title>
+    
+    <!-- Fuentes de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Íconos de FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Estilos Externos -->
+    <link rel="stylesheet" href="../04registros/css/styles.css">
+</head>
+<body>
+
+    <!-- NOTIFICACIÓN FLOTANTE (CUADRO DE VISTO / REGISTRO EXITOSO) -->
+    <div id="toastNotification" class="toast-notification">
+        <div class="toast-icon">
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <div class="toast-content">
+            <h4>¡Registro Exitoso!</h4>
+            <p id="toastMessage">La persona ha sido agregada correctamente.</p>
+        </div>
+    </div>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="main-wrapper">
+        
+        <!-- BANNER DE ENCABEZADO CON IMAGEN -->
+        <header class="hero-banner">
+            <div class="hero-content">
+                <span class="tag"><i class="fa-solid fa-flask"></i> Práctica de Laboratorio</span>
+                <h1>Registro de Personas</h1>
+                <p>Completa los campos del formulario para añadir un nuevo registro a la base de datos.</p>
+            </div>
+        </header>
+
+        <div class="content-container">
+            
+            <!-- SECCIÓN DEL FORMULARIO -->
+            <section class="section-card">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-user-plus"></i> Datos del Usuario
+                    </h2>
+                </div>
+
+                <form id="personaForm" novalidate>
+                    <div class="form-grid">
+                        
+                        <!-- Nombres -->
+                        <div class="form-group">
+                            <label for="nombres">Nombres *</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="nombres" name="nombres" placeholder="Ej. Juan Andrés" required>
+                                <i class="fa-solid fa-font"></i>
+                            </div>
+                            <span class="error-message" id="errorNombres"></span>
+                        </div>
+
+                        <!-- Apellidos -->
+                        <div class="form-group">
+                            <label for="apellidos">Apellidos *</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="apellidos" name="apellidos" placeholder="Ej. Pérez Gómez" required>
+                                <i class="fa-solid fa-font"></i>
+                            </div>
+                            <span class="error-message" id="errorApellidos"></span>
+                        </div>
+
+                        <!-- Correo Electrónico -->
+                        <div class="form-group">
+                            <label for="correo">Correo Electrónico *</label>
+                            <div class="input-wrapper">
+                                <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
+                                <i class="fa-solid fa-at"></i>
+                            </div>
+                            <span class="error-message" id="errorCorreo"></span>
+                        </div>
+
+                        <!-- Edad -->
+                        <div class="form-group">
+                            <label for="edad">Edad *</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="edad" name="edad" placeholder="Ej. 25" min="1" max="120" required>
+                                <i class="fa-solid fa-hashtag"></i>
+                            </div>
+                            <span class="error-message" id="errorEdad"></span>
+                        </div>
+
+                    </div>
+
+                    <button type="submit" id="btnAgregar" class="btn-submit">
+                        <i class="fa-solid fa-check"></i> Agregar Persona
+                    </button>
+                </form>
+            </section>
+
+            <!-- SECCIÓN DE LA TABLA -->
+            <section class="section-card">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fa-solid fa-users"></i> Personas Registradas
+                    </h2>
+                    <span class="badge-count" id="totalBadge">0 registros</span>
+                </div>
+
+                <div class="table-responsive">
+                    <table id="tablaPersonas">
+                        <thead>
+                            <tr>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                                <th>Correo Electrónico</th>
+                                <th>Edad</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodyPersonas">
+                            <tr id="emptyRow" class="empty-row">
+                                <td colspan="4">
+                                    <i class="fa-solid fa-folder-open empty-state-icon"></i>
+                                    <p>No hay personas registradas aún. Ingresa los datos arriba.</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Script de Lógica -->
+    <script src="script.js"></script>
+</body>
+</html>
